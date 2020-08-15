@@ -1,0 +1,207 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ElecProj"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+        x:Class="ElecProj.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="960" WindowState="Normal" WindowStartupLocation="CenterScreen">
+    <TabControl>
+        <TabItem Header="Tab1" FontSize="20" Width="100" Background="Transparent">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.Background>
+                        <!--背景-->
+                        <ImageBrush ImageSource="background.jpg"  Stretch="UniformToFill" Opacity="0.12" />
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="80"/>
+                        <RowDefinition  />
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"  Width="160"
+                     Margin="0,-30,0,0" Content="选择发射机文件" Click="OpenTransmitterClick" FontSize="17"/>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"  Width="160"
+                     Margin="0,40,0,0" Content="选择接收机文件" Click="OpenReceiverClick" FontSize="17"/>
+                    <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" Margin="0,70,0,0" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" Grid.Row="0" />
+
+                    <StackPanel Grid.Row="1" Height="300" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <TextBlock Text="视 电 阻 率" FontWeight="ExtraLight" FontSize="22"  Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Grid.Row="1" Margin="10" Text="AM:"/>
+                            <TextBox Grid.Row="1"  Width="139" Height="18" Text="{Binding AMValue}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Grid.Row="1" Margin="10" Text="AN:"/>
+                            <TextBox Grid.Row="1" Width="139" Height="18" Text="{Binding ANValue}"  />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Grid.Row="1" Margin="10" Text="BM:"/>
+                            <TextBox Grid.Row="1"  Width="139" Height="18" Text="{Binding BMValue}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Grid.Row="1" Margin="10" Text="BN:"/>
+                            <TextBox Grid.Row="1"  Width="139" Height="18" Text="{Binding BNValue}"  />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" >
+                            <TextBlock Grid.Row="1" Margin="10" Text=" K :" Foreground="Black"/>
+                            <TextBlock Grid.Row="1"  Width="50" Height="18"/>
+                            <TextBlock Grid.Row="1" Margin="10" Text="Res:" Foreground="Black"/>
+                            <TextBlock Grid.Row="1"  Width="50" Height="18"/>
+                        </StackPanel>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"  Width="120"
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="0,3,0,0" Content="计   算" FontSize="20"/>
+                    </StackPanel>
+                    <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" Margin="0,-30,0,0" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" Grid.Row="1" />
+
+                    <StackPanel Grid.Row="1" Height="330" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                        <TextBlock Text="视 极 化 率" FontWeight="ExtraLight" FontSize="22"  Margin="10,4,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal"  >
+                            <TextBlock Grid.Row="1" Margin="10" Text="供电时长："/>
+                            <TextBox Grid.Row="1"  Width="90" Height="18" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Grid.Row="1" Margin="10" Text="断电延时:"/>
+                            <TextBox Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="109" Height="18"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Grid.Row="1" Margin="10" Text="取样宽度:"/>
+                            <TextBox Grid.Row="1"  Width="109" Height="18"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" >
+                            <TextBlock Grid.Row="1" Margin="10" Text="η1,η2,η3,η4："/>
+                            <TextBlock Grid.Row="1"   Height="18" Margin="10,0,20,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Grid.Row="1" Margin="10" Text="Result："/>
+                            <TextBlock Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="109" Height="18"/>
+                        </StackPanel>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"  Width="120"
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="0,3,0,0" Content="计   算" FontSize="20"/>
+                    </StackPanel>
+                </Grid>
+                <Grid  Grid.Column="1">
+                    <Grid.RowDefinitions >
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <WebBrowser x:Name="WebVolt"/>
+                    <WebBrowser Grid.Row="1"  x:Name="WebCurrent"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Tab2" FontSize="20" Width="100" Background="Transparent">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="60"/>
+                    <RowDefinition  />
+                </Grid.RowDefinitions>
+                <Button Style="{StaticResource MaterialDesignIconButton}"  Width="160" HorizontalAlignment="Left"
+                     Content="选择文件" FontSize="17"/>
+                <WebBrowser Grid.Row="1"  x:Name="WebLogData"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="串 口" FontSize="20" Width="100" Background="Transparent">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="155*"/>
+                    <ColumnDefinition Width="104*"/>
+                    <ColumnDefinition Width="687*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Grid.ColumnSpan="3" >
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="167*"/>
+                        <ColumnDefinition Width="464*"/>
+                        <ColumnDefinition Width="315*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--设置第一部分-->
+                    <GroupBox Header="数据接收区" 
+                  BorderBrush="LightBlue"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+
+                        <StackPanel Grid.Row="0" Grid.RowSpan="2"  >
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <TextBox Margin="5,10" TextWrapping="Wrap" Name="tb_receiveData" Height="300" IsEnabled="False"></TextBox>
+                            </ScrollViewer>
+                            <Button Content="清空接收数据" Margin="20,20"  Width="120"  HorizontalAlignment="Left" Click="ClearReceiveData_Click"></Button>
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <!--设置第二部分-->
+                    <GroupBox Header="串口参数设置"
+                  BorderBrush="LightBlue" Grid.Column="2" >
+                        <!-- 第一行要摆放的控件-->
+                        <StackPanel Orientation="Vertical"  Grid.Column="1">
+                            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                <TextBlock Text="串 口 号 " Width="auto" Margin="10,10,0,0" Padding="0,6,0,0"></TextBlock>
+                                <ComboBox Name="cb_SerialPortNumber" Margin="10,10,0,0"  Width="100"  />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                <TextBlock Text="波 特 率 " Width="auto" Margin="10,10,0,0" Padding="0,6,0,0"></TextBlock>
+                                <ComboBox Name="cb_BaudRate" Margin="10,10,0,0" Width="100" SelectedIndex="4" HorizontalAlignment="Center">
+                                    <ComboBoxItem Content="600"  />
+                                    <ComboBoxItem Content="1200" />
+                                    <ComboBoxItem Content="2400" />
+                                    <ComboBoxItem Content="4800" />
+                                    <ComboBoxItem Content="9600" />
+                                    <ComboBoxItem Content="14400" />
+                                    <ComboBoxItem Content="19200" />
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="校 验 位 " Width="auto" Margin="10,10,0,0" Padding="0,6,0,0"/>
+                                <ComboBox Width="100" Margin="10,10,0,0" SelectedIndex="0">
+                                    <ComboBoxItem Content="None"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="数 据 位 " Width="auto" Margin="10,10,0,0" Padding="0,6,0,0"/>
+                                <ComboBox Width="100" Margin="10,10,0,0"  SelectedIndex="0">
+                                    <ComboBoxItem Content="8"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="停 止 位 " Width="auto" Margin="10,10,0,0" Padding="0,3,0,0"/>
+                                <ComboBox Width="100" Margin="5,10,5,10" SelectedIndex="0" >
+                                    <ComboBoxItem Content="one"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                <TextBlock Name="tb_switchStatus" Text="串口状态 " Width="auto" Margin="10,50,0,0" Padding="0,2,0,0"/>
+                                <Ellipse Name="e_status" Fill="#000000" Height="10" Stroke="Black" Margin="10,50,0,0" Width="10" />
+                                <Button Content="打开串口" Width="100" Margin="40,50,0,0" Padding="0,6,0,0" Name="bt_SerialSwitch" Click="bt_SerialSwitch_Click"></Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
+
+                <!--设置第三部分-->
+                <GroupBox Header="功能区" 
+                  BorderBrush="LightBlue"  Grid.Row="1" Grid.ColumnSpan="3">
+                    <StackPanel Grid.Row="1">
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" >
+                            <TextBox Name="tb_SendData" Margin="5" Height="40" Width="600" VerticalAlignment="Top"></TextBox>
+                            <Button Content="发送数据"  Margin="5" VerticalAlignment="Top" Name="bt_send"  Click="bt_send_Click"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </TabItem>
+    </TabControl>
+
+</Window>
