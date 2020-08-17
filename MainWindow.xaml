@@ -32,59 +32,64 @@
                      Margin="0,40,0,0" Content="选择接收机文件" Click="OpenReceiverClick" FontSize="17"/>
                     <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" Margin="0,70,0,0" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" Grid.Row="0" />
 
-                    <StackPanel Grid.Row="1" Height="300" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <StackPanel Grid.Row="1" Height="340" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                         <TextBlock Text="视 电 阻 率" FontWeight="ExtraLight" FontSize="22"  Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Grid.Row="1" Margin="10" Text="AM:"/>
-                            <TextBox Grid.Row="1"  Width="139" Height="18" Text="{Binding AMValue}" />
+                            <TextBox Grid.Row="1"  Width="139" Height="auto"  HorizontalAlignment="Center" VerticalAlignment="Center" Name="TextBoxCentralGradientAM" Text="0.4" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Grid.Row="1" Margin="10" Text="AN:"/>
-                            <TextBox Grid.Row="1" Width="139" Height="18" Text="{Binding ANValue}"  />
+                            <TextBox Grid.Row="1" Width="139" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center" Name="TextBoxCentralGradientAN" Text="0.45"  />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Grid.Row="1" Margin="10" Text="BM:"/>
-                            <TextBox Grid.Row="1"  Width="139" Height="18" Text="{Binding BMValue}" />
+                            <TextBox Grid.Row="1"  Width="139" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center" Name="TextBoxCentralGradientBM" Text="0.4"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Grid.Row="1" Margin="10" Text="BN:"/>
-                            <TextBox Grid.Row="1"  Width="139" Height="18" Text="{Binding BNValue}"  />
+                            <TextBox Grid.Row="1"  Width="139" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center" Name="TextBoxCentralGradientBN" Text="0.35"  />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0" >
                             <TextBlock Grid.Row="1" Margin="10" Text=" K :" Foreground="Black"/>
-                            <TextBlock Grid.Row="1"  Width="50" Height="18"/>
+                            <TextBlock Grid.Row="1"  Width="50" Height="auto" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Name="TextBlockK"/>
                             <TextBlock Grid.Row="1" Margin="10" Text="Res:" Foreground="Black"/>
-                            <TextBlock Grid.Row="1"  Width="50" Height="18"/>
+                            <TextBlock Grid.Row="1"  Width="50" Height="auto" FontSize="16" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Name="TextBlockP"/>
                         </StackPanel>
                         <Button Style="{StaticResource MaterialDesignFlatButton}"  Width="120"
-                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="0,3,0,0" Content="计   算" FontSize="20"/>
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="0,3,0,0" Content="计 算 K" FontSize="20" Click="GetDeviceFactorClick"/>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"  Width="120"
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="0,3,0,0" Content="计 算 ρ" FontSize="20" Click="GetApparentResistivityClick"/>
                     </StackPanel>
-                    <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" Margin="0,-30,0,0" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" Grid.Row="1" />
+                    <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" Margin="0,25,0,0" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" Grid.Row="1" />
 
-                    <StackPanel Grid.Row="1" Height="330" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                    <StackPanel Grid.Row="1" Height="300" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
                         <TextBlock Text="视 极 化 率" FontWeight="ExtraLight" FontSize="22"  Margin="10,4,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <StackPanel Orientation="Horizontal"  >
                             <TextBlock Grid.Row="1" Margin="10" Text="供电时长："/>
-                            <TextBox Grid.Row="1"  Width="90" Height="18" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                            <TextBox Grid.Row="1"  Width="90" Height="auto" VerticalAlignment="Center" 
+                                     HorizontalAlignment="Center" x:Name="TextBoxPeriod" Text="1"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Grid.Row="1" Margin="10" Text="断电延时:"/>
-                            <TextBox Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="109" Height="18"/>
+                            <TextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="109" Height="auto" 
+                                    Text="500" Name="TextBoxCutDelay"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Grid.Row="1" Margin="10" Text="取样宽度:"/>
-                            <TextBox Grid.Row="1"  Width="109" Height="18"/>
+                            <TextBox Grid.Row="1"  Width="109" Height="auto" 
+                                     VerticalAlignment="Center" HorizontalAlignment="Center" Name="TextBoxCutInterval" Text="20"/>
                         </StackPanel>
+
                         <StackPanel Orientation="Vertical" >
                             <TextBlock Grid.Row="1" Margin="10" Text="η1,η2,η3,η4："/>
-                            <TextBlock Grid.Row="1"   Height="18" Margin="10,0,20,0"/>
+                            <TextBlock Grid.Row="1"   Height="auto" Margin="10,0,20,0" FontSize="15"  Name="TextBlockApparentPolarizability"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" >
-                            <TextBlock Grid.Row="1" Margin="10" Text="Result："/>
-                            <TextBlock Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="109" Height="18"/>
-                        </StackPanel>
+
                         <Button Style="{StaticResource MaterialDesignFlatButton}"  Width="120"
-                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="0,3,0,0" Content="计   算" FontSize="20"/>
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="0,10,0,0" Content="计   算" FontSize="20" Click="GetApparentPolarizabilityClick"/>
                     </StackPanel>
                 </Grid>
                 <Grid  Grid.Column="1">
@@ -100,19 +105,27 @@
 
         <TabItem Header="Tab2" FontSize="20" Width="100" Background="Transparent">
             <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="145*"/>
+                    <ColumnDefinition Width="801*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition  Height="60"/>
                     <RowDefinition  />
                 </Grid.RowDefinitions>
                 <Button Style="{StaticResource MaterialDesignIconButton}"  Width="160" HorizontalAlignment="Left"
-                     Content="选择文件" FontSize="17"/>
-                <WebBrowser Grid.Row="1"  x:Name="WebLogData"/>
+                     Content="选择文件" FontSize="17" Grid.ColumnSpan="2" Margin="0,6" Click="getFile"/>
+                <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" Margin="0,54,0,4" HorizontalAlignment="Stretch" SnapsToDevicePixels="True"  Width="auto" Grid.ColumnSpan="2"/>
+
+                <WebBrowser Grid.Row="1"  x:Name="webBrowser1" Margin="0,10,0,0" Grid.ColumnSpan="2"/>
             </Grid>
         </TabItem>
         <TabItem Header="串 口" FontSize="20" Width="100" Background="Transparent">
             <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="155*"/>
+                    <ColumnDefinition Width="19*"/>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="118*"/>
                     <ColumnDefinition Width="104*"/>
                     <ColumnDefinition Width="687*"/>
                 </Grid.ColumnDefinitions>
@@ -121,7 +134,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Grid.ColumnSpan="3" >
+                <Grid Grid.Row="0" Grid.ColumnSpan="5" >
                     <Grid.ColumnDefinitions >
                         <ColumnDefinition Width="167*"/>
                         <ColumnDefinition Width="464*"/>
@@ -191,7 +204,7 @@
 
                 <!--设置第三部分-->
                 <GroupBox Header="功能区" 
-                  BorderBrush="LightBlue"  Grid.Row="1" Grid.ColumnSpan="3">
+                  BorderBrush="LightBlue"  Grid.Row="1" Grid.ColumnSpan="5">
                     <StackPanel Grid.Row="1">
                         <StackPanel Grid.Row="1" Orientation="Horizontal" >
                             <TextBox Name="tb_SendData" Margin="5" Height="40" Width="600" VerticalAlignment="Top"></TextBox>
